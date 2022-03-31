@@ -126,8 +126,8 @@ class _MySearchPageState extends State<MySearchPage> {
                           return ListTile(
                             contentPadding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                             onTap: (){
-                              widget.controller!.animateToPage(5, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
-                              OtherProfilePage(users: user[index]);
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => OtherProfilePage(users: user[index])));
+                              // widget.controller!.animateToPage(5, duration: const Duration(milliseconds: 200), curve: Curves.easeIn);
                             },
                             leading: Container(
                               padding: const EdgeInsets.all(2),

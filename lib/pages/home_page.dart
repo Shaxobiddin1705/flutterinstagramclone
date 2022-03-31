@@ -48,7 +48,11 @@ class _HomePageState extends State<HomePage> {
         physics: const NeverScrollableScrollPhysics(),
         onPageChanged: (int index) {
           setState(() {
-            _currentTap = index;
+            if(index != 5) {
+              setState(() {
+                _currentTap = index;
+              });
+            }
           });
         },
         children: [
@@ -57,7 +61,7 @@ class _HomePageState extends State<HomePage> {
           MyUploadPage(pageController: _pageController,),
           const MyLikesPage(),
           MyProfilePage(),
-          OtherProfilePage(pageController: _pageController,),
+          // OtherProfilePage(pageController: _pageController,),
         ],
       ),
 

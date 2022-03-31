@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterinstagramclone/models/post_model.dart';
 import 'package:flutterinstagramclone/models/user_model.dart';

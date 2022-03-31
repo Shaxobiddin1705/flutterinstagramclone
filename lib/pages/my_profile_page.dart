@@ -69,10 +69,12 @@ class _MyProfilePageState extends State<MyProfilePage> {
   }
 
   void _showUserInfo(Users user) {
-    setState(() {
-      users = user;
-      isLoading = false;
-    });
+    if(mounted){
+      setState(() {
+        users = user;
+        isLoading = false;
+      });
+    }
   }
 
   // for edit user
@@ -106,6 +108,7 @@ class _MyProfilePageState extends State<MyProfilePage> {
     return  users == null ? Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
+      color: Colors.white,
       child: const Center(child: CircularProgressIndicator()),
     ) : Scaffold(
         backgroundColor: Colors.white,

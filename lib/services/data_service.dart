@@ -90,7 +90,7 @@ class DataService {
     post.createdDate = DateTime.now().toString();
     post.isLiked = false;
     post.isMine = true;
-    
+
     String postId = instance.collection(userFolder).doc(me.uid).collection(postFolder).doc().id;
     post.id = postId;
     await instance.collection(userFolder).doc(me.uid).collection(postFolder).doc(postId).set(post.toJson());
@@ -126,6 +126,19 @@ class DataService {
     List<Posts> posts = [];
     String uid = (await HiveDB.load())!;
     var querySnapshot = await instance.collection(userFolder).doc(uid).collection(postFolder).get();
+    for(var e in querySnapshot.docs) {
+      Posts post = Posts.fromJson(e.data());
+      if(post.uid == uid) post.isMine = true;
+      posts.add(post);
+    }
+
+    return posts;
+  }
+
+  static Future<List<Posts>> loadOtherPost(Users users) async{
+    List<Posts> posts = [];
+    String uid = (await HiveDB.load())!;
+    var querySnapshot = await instance.collection(userFolder).doc(users.uid).collection(postFolder).get();
 
     for(var e in querySnapshot.docs) {
       Posts post = Posts.fromJson(e.data());
